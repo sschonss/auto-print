@@ -6,7 +6,7 @@ param(
     [int]$num_copies
 )
 
-$image_file = "C:\Caminho\Para\Seu\Arquivo\$image_name.jpeg"
+$image_file = "files\$image_name.jpeg"
 
 if (-not (Test-Path $image_file)) {
     Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): The image file '$image_file' was not found."
