@@ -1,26 +1,26 @@
 param(
     [Parameter(Mandatory=$true)]
-    [string]$fileName
+    [string]$image_name,
+
+    [Parameter(Mandatory=$true)]
+    [int]$num_copies
 )
 
-$extension = (Get-Item $fileName).Extension
-if ($extension -ne '.jpeg' -and $extension -ne '.jpg') {
-    $fileName += '.jpeg'
-}
+$image_file = "files\$image_name.jpeg"
 
-if (-not (Test-Path $fileName)) {
-    "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): The image file '$fileName' was not found." | Out-File -Append -FilePath .\print_log.txt
+if (-not (Test-Path $image_file)) {
+    Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): The image file '$image_file' was not found."
     exit 1
 }
 
 $printer = Get-Printer | Where-Object { $_.Default } | Select-Object -ExpandProperty Name
 
-"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of file '$fileName' on printer '$printer'" | Out-File -Append -FilePath .\print_log.txt
-Start-Process -FilePath 'mspaint' -ArgumentList $fileName -Wait
-"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of file '$fileName' on printer '$printer' completed" | Out-File -Append -FilePath .\print_log.txt
+Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printer'"
 
-Write-Host "Image '$fileName' sent for printing to $printer"
-Write-Host "Logs saved in print_log.txt"
+for ($i = 0; $i -lt $num_copies; $i++) {
+    Start-Process -FilePath 'mspaint' -ArgumentList $image_file -Wait
+}
 
-# .\autoprinter.ps1 "2468"
-# .\autoprinter.ps1 "2468.jpeg"
+Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printer' completed"
+"Image '$image_file' sent for printing ($num_copies copies) to $printer" | Out-File -Append -FilePath print_log.txt
+"Logs saved in print_log.txt" | Out-File -Append -FilePath print_log.txt
