@@ -1,0 +1,9 @@
+2024-01-05 09:48:02: Starting printing of file 'files/2468.jpeg' (2 copies) on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-25 (1 arquivo(s))
+2024-01-05 09:48:02: Printing of file 'files/2468.jpeg' (2 copies) on printer 'HL-L8350CDW' completed
+2024-01-05 09:50:24: Starting printing of file 'files/13579.jpeg' (2 copies) on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-26 (1 arquivo(s))
+2024-01-05 09:50:24: Printing of file 'files/13579.jpeg' (2 copies) on printer 'HL-L8350CDW' completed
+2024-01-05 09:53:06: Starting printing of 2 copies of file 'files/13579.jpeg' on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-27 (1 arquivo(s))
+2024-01-05 09:53:06: Printing of 2 copies of file 'files/13579.jpeg' on printer 'HL-L8350CDW' completed
