@@ -24,6 +24,7 @@ func printImage(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         log.Println(err)
         fmt.Fprintf(w, "Error printing image: %s\n", err)
+		fmt.Fprintf(w, "Output: %s\n", output)
         return
     }
     
