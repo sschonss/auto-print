@@ -19,7 +19,7 @@ $printerName = $printer.Name
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printerName'"
 
 for ($i = 0; $i -lt $num_copies; $i++) {
-    Start-Process -FilePath "C:\Windows\System32\rundll32.exe" -ArgumentList "C:\Windows\System32\shimgvw.dll,ImageView_PrintTo /pt `"$printerName`" `"$image_file`""
+    Start-Process -FilePath "C:\Windows\System32\mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printerName`""
 }
 
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printerName' completed"
