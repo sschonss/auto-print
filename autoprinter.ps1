@@ -13,7 +13,7 @@ if (-not (Test-Path $image_file)) {
     exit 1
 }
 
-$printer = Get-Printer | Where-Object { $_.Default } | Select-Object -ExpandProperty Name
+$printer = (Get-WmiObject -Query "SELECT * FROM Win32_Printer WHERE Default=$true").Name
 
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printer'"
 
