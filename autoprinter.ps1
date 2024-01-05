@@ -18,7 +18,7 @@ $printer = (Get-WmiObject -Query "SELECT * FROM Win32_Printer WHERE Default=$tru
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printer'"
 
 for ($i = 0; $i -lt $num_copies; $i++) {
-    Start-Process -FilePath "ms-photos:" -ArgumentList "print $image_file -PrinterName '$printer'"
+    Start-Process -FilePath "C:\Windows\System32\spool\drivers\x64\3\Print.exe" -ArgumentList "/D:$printer $image_file"
 }
 
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printer' completed"
