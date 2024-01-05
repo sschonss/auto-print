@@ -23,6 +23,8 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 
 	var cmd *exec.Cmd
 
+	fmt.Println("OS:", os)
+
 	if os == "linux" {
 		fmt.Println("Linux detected")
 		cmd = exec.Command("bash", "autoprinter.sh", imageName, copies)

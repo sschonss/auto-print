@@ -100,6 +100,14 @@ http://localhost:8080/print
 
 Lá ira conter as instruções para a utilização da API.
 
+#### Observações
+
+Pode ser que ao rodar no Windows, você receba um erro de permissão. Para resolver isso, você pode usar o seguinte comando:
+
+```bash
+Set-ExecutionPolicy RemoteSigned
+```
+
 ---
 
 ## Inglês / English
@@ -135,8 +143,6 @@ Features:
 ```
 
 ### API Server (Go):
-
-To run the application more efficiently and professionally, we'll use a Go API to automate script execution.
 
 You can use the command go run main.go to run the application, or go build main.go to generate an executable.
 Build
@@ -200,3 +206,11 @@ http://localhost:8080/print
 ```
 
 There, you'll find instructions for using the API.
+
+### Notes
+
+When running on Windows, you may receive a permission error. To fix this, you can use the following command:
+
+```bash
+Set-ExecutionPolicy RemoteSigned
+```

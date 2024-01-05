@@ -21,3 +21,8 @@ id de requisição é HL-L8350CDW-31 (1 arquivo(s))
 2024-01-05 11:51:53: Printing of 2 copies of file 'files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW' completed
 Image 'files\123456.jpeg' sent for printing (2 copies) to 
 Logs saved in print_log.txt
+2024-01-05 15:58:13: Starting printing of 1 copies of file 'files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-32 (1 arquivo(s))
+2024-01-05 15:58:13: Printing of 1 copies of file 'files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW' completed
+Image 'files\123456.jpeg' sent for printing (1 copies) to 
+Logs saved in print_log.txt
