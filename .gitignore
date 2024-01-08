@@ -1,0 +1,6 @@
+print_log.txt
+/.idea/.gitignore
+/.idea/auto-print.iml
+/.idea/modules.xml
+/.idea/vcs.xml
+/server/print_log.txt

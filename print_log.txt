@@ -1,0 +1,5 @@
+2024-01-08 08:36:28: Starting printing of 2 copies of file '../files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW'
+2024-01-08 08:36:28: Printing of 2 copies of file '../files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW' completed
+2024-01-08 08:36:41: Starting printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-33 (1 arquivo(s))
+2024-01-08 08:36:41: Printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW' completed
