@@ -26,3 +26,6 @@ jobs:
 
     - name: Build to Windows
       run: sudo apt install gcc-mingw-w64-x86-64 && GOOS=windows GOARCH=amd64 go build -v ./...
+
+    - name: Run Tests
+      run: go test -v ./...
