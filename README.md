@@ -17,11 +17,13 @@ Funcionalidades:
 
 ### Uso:
 
+Acesse o diretório de scripts e execute o script correspondente ao seu sistema operacional.
+
 - Bash (Sistemas Unix-like):
         Para utilizar o script em Bash, execute-o no terminal fornecendo o nome do arquivo como argumento. Exemplo:
 
 ```bash
-./autoprinter.sh "nome_da_imagem"
+./autoprinter.sh "nome_da_imagem" "numero_de_copias" "sistema_operacional"
 ```
 
 - PowerShell (Windows):
@@ -29,12 +31,14 @@ Funcionalidades:
     No PowerShell, execute o script fornecendo o nome do arquivo como argumento. Exemplo:
 
 ```arduino
-.\autoprinter.ps1 "nome_da_imagem"
+.\autoprinter.ps1 "nome_da_imagem" "numero_de_copias" "sistema_operacional"
 ```
 
 ### API Server (Go):
 
 Para rodar a aplicação de forma mais eficiente e profissional, vamos usar uma API em Go para automatizar a execução dos scripts.
+
+Acesse o diretório `server` e execute os passos abaixo.
 
 Você pode usar o comando `go run main.go` para rodar a aplicação, ou `go build main.go` para gerar um executável.
 
@@ -112,8 +116,7 @@ Set-ExecutionPolicy RemoteSigned
 
 ## Inglês / English
 
-This system was developed to automate the process of printing images on a specific printer, logging relevant information to a log file. The system consists of two scripts, one in Bash for Unix-like systems and another in PowerShell for Windows.
-Features:
+This system was developed to automate the process of printing images on a specific printer while logging relevant information to a log file. The system consists of two scripts, one in Bash for Unix-like systems and another in PowerShell for Windows, respectively.Features:
 
 - Automated Printing:
         The scripts accept the image name as a parameter and check if the file exists in the specified directory.
@@ -131,7 +134,7 @@ Features:
         To use the Bash script, execute it in the terminal providing the image name as an argument. Example:
 
 ```bash
-./autoprinter.sh "image_name"
+./autoprinter.sh "image_name" "number_of_copies" "operating_system"
 ```
 
 - PowerShell (Windows):
@@ -139,13 +142,15 @@ Features:
     In PowerShell, execute the script providing the image name as an argument. Example:
 
 ```arduino
-.\autoprinter.ps1 "image_name"
+.\autoprinter.ps1 "image_name" "number_of_copies" "operating_system"
 ```
 
 ### API Server (Go):
 
 You can use the command go run main.go to run the application, or go build main.go to generate an executable.
 Build
+
+Access the `server` directory and follow the steps below.
 
 If you want to build your project, run the following command in the terminal:
 
