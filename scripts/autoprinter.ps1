@@ -3,7 +3,10 @@ param(
     [string]$image_name,
 
     [Parameter(Mandatory=$true)]
-    [int]$num_copies
+    [int]$num_copies,
+
+    [Parameter(Mandatory=$true)]
+    [string]$printer_name
 )
 
 $image_file = ".\files\$image_name.jpeg"
@@ -13,15 +16,12 @@ if (-not (Test-Path $image_file)) {
     exit 1
 }
 
-$printer = Get-WmiObject -Query "SELECT * FROM Win32_Printer WHERE Default=$true"
-$printerName = $printer.Name
-
-Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printerName'"
+Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printer_name'"
 
 for ($i = 0; $i -lt $num_copies; $i++) {
-    Start-Process -FilePath "C:\Windows\System32\mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printerName`""
+    Start-Process -FilePath "C:\Windows\System32\mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printer_name`""
 }
 
-Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printerName' completed"
-"Image '$image_file' sent for printing ($num_copies copies) to $printerName" | Out-File -Append -FilePath print_log.txt
+Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printer_name' completed"
+"Image '$image_file' sent for printing ($num_copies copies) to $printer_name" | Out-File -Append -FilePath print_log.txt
 "Logs saved in print_log.txt" | Out-File -Append -FilePath print_log.txt
