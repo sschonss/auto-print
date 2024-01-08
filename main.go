@@ -11,7 +11,9 @@ import (
 
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
-	(*w).Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	(*w).Header().Set("Access-Control-Allow-Methods", "*")
+	(*w).Header().Set("Access-Control-Allow-Headers", "*")
+	(*w).Header().Set("Access-Control-Allow-Credentials", "true")
 }
 
 func printImage(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +24,7 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Error parsing form: %s\n", err)
 		return
 	}
-
+	enableCors(&w)
 	imageName := r.FormValue("image")
 	copies := r.FormValue("copies")
 	os := r.FormValue("os")
