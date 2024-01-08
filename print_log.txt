@@ -12,3 +12,6 @@ id de requisição é Brother_MFC_J6520DW-35 (1 arquivo(s))
 2024-01-08 09:26:56: Starting printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'MFC-J6520DW'
 id de requisição é MFC-J6520DW-36 (1 arquivo(s))
 2024-01-08 09:26:56: Printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'MFC-J6520DW' completed
+2024-01-08 09:41:00: Starting printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW'
+id de requisição é HL-L8350CDW-37 (1 arquivo(s))
+2024-01-08 09:41:00: Printing of 2 copies of file './files/temp_123456.jpeg' (resized) on printer 'HL-L8350CDW' completed

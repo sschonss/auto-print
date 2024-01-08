@@ -9,7 +9,13 @@ import (
 	"strings"
 )
 
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+}
+
 func printImage(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
@@ -51,6 +57,7 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 }
 
 func explainAPI(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	explanation := `
 		Welcome to the AutoPrint API!
 
@@ -75,6 +82,7 @@ type Printers struct {
 }
 
 func getPrinters(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	os := r.URL.Query().Get("os")
 	var printers []string
 
