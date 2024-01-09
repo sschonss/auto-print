@@ -9,7 +9,7 @@ param(
     [string]$printer_name
 )
 
-$image_file = ".\files\$image_name.jpeg"
+$image_file = ".\files\$image_name"
 
 if (-not (Test-Path $image_file)) {
     Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): The image file '$image_file' was not found."
