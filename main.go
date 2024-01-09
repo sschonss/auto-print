@@ -64,8 +64,8 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 		psPrinter := fmt.Sprintf("\"%s\"", printer)
 		cmd = exec.Command("bash", "scripts/autoprinter.sh", imageName, "1", psPrinter)
 	} else if os == "win" {
-		psPrinter := fmt.Sprintf("\"%s\"", printer)
-		cmd = exec.Command("powershell", "-File", "scripts/autoprinter.ps1", imageName, "1", psPrinter)
+		fmt.Println(printer)
+		cmd = exec.Command("powershell", "-File", "scripts/autoprinter.ps1", imageName, "1", printer)
 	} else {
 		cmd = exec.Command("echo", "OS not detected")
 	}
