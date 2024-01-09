@@ -22,22 +22,19 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
 
 	err := r.ParseMultipartForm(10 << 20)
-	fmt.Fprintf(w, "Request: %s\n", r)
 	if err != nil {
-		log.Println(err)
-		fmt.Fprintf(w, "Error parsing form: %s\n", err)
+		log.Printf("Error parsing form: %s\n", err) // Loga o erro para um diagnóstico mais detalhado
+		http.Error(w, "Failed to parse form", http.StatusBadRequest)
 		return
 	}
 
 	file, handler, err := r.FormFile("image")
-	fmt.Fprintf(w, "File: %s\n", file)
 	if err != nil {
-		log.Println(err)
-		fmt.Fprintf(w, "Error retrieving the file: %s\n", err)
+		log.Printf("Error retrieving the file: %s\n", err)
+		http.Error(w, "Failed to retrieve the file", http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
-
 	imageName := handler.Filename
 	fmt.Fprintf(w, "Image name: %s\n", imageName)
 	imagePath := "./files/" + imageName 
