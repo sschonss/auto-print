@@ -23,7 +23,7 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
-		log.Printf("Error parsing form: %s\n", err) // Loga o erro para um diagnóstico mais detalhado
+		log.Printf("Error parsing form: %s\n", err)
 		http.Error(w, "Failed to parse form", http.StatusBadRequest)
 		return
 	}
@@ -35,22 +35,23 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()
+
 	imageName := handler.Filename
-	fmt.Fprintf(w, "Image name: %s\n", imageName)
-	imagePath := "./files/" + imageName 
-	fmt.Fprintf(w, "Image path: %s\n", imagePath)
+	imagePath := "./files/" + imageName
+	log.Printf("Image path: %s\n", imagePath)
+
 	outputFile, err := os.Create(imagePath)
 	if err != nil {
-		log.Println(err)
-		fmt.Fprintf(w, "Error creating the file: %s\n", err)
+		log.Printf("Error creating the file: %s\n", err)
+		http.Error(w, "Failed to create the file", http.StatusInternalServerError)
 		return
 	}
 	defer outputFile.Close()
 
 	_, err = io.Copy(outputFile, file)
 	if err != nil {
-		log.Println(err)
-		fmt.Fprintf(w, "Error copying file: %s\n", err)
+		log.Printf("Error copying file: %s\n", err)
+		http.Error(w, "Failed to copy the file", http.StatusInternalServerError)
 		return
 	}
 
@@ -69,14 +70,16 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		log.Println(err)
+		log.Printf("Error printing image: %s\n", err)
 		fmt.Fprintf(w, "Error printing image: %s\n", err)
 		fmt.Fprintf(w, "Output: %s\n", output)
+		http.Error(w, "Failed to print the image", http.StatusInternalServerError)
 		return
 	}
 
 	fmt.Fprintf(w, "Print request processed successfully.\n%s\n", output)
 }
+
 
 func explainAPI(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
