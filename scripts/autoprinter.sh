@@ -5,10 +5,10 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-image_file="files/$1.jpeg"
+image_file="./files/$1"
 num_copies="$2"
 printer_name="$3"
-temp_image="./files/temp_$1.jpeg"
+temp_image="./files/temp_$1"
 
 if [ ! -f "$image_file" ]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S'): The image file '$image_file' was not found."

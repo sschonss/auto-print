@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 	"strings"
 )
@@ -18,33 +20,50 @@ func enableCors(w *http.ResponseWriter) {
 
 func printImage(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
-	err := r.ParseForm()
+
+	err := r.ParseMultipartForm(10 << 20) // Ajuste o tamanho máximo do arquivo conforme necessário
 	if err != nil {
 		log.Println(err)
 		fmt.Fprintf(w, "Error parsing form: %s\n", err)
 		return
 	}
-	enableCors(&w)
-	imageName := r.FormValue("image")
-	copies := r.FormValue("copies")
+
+	file, handler, err := r.FormFile("image")
+	if err != nil {
+		log.Println(err)
+		fmt.Fprintf(w, "Error retrieving the file: %s\n", err)
+		return
+	}
+	defer file.Close()
+
+	imageName := handler.Filename
+	imagePath := "./files/" + imageName // Diretório onde as imagens serão salvas
+	outputFile, err := os.Create(imagePath)
+	if err != nil {
+		log.Println(err)
+		fmt.Fprintf(w, "Error creating the file: %s\n", err)
+		return
+	}
+	defer outputFile.Close()
+
+	_, err = io.Copy(outputFile, file)
+	if err != nil {
+		log.Println(err)
+		fmt.Fprintf(w, "Error copying file: %s\n", err)
+		return
+	}
+
 	os := r.FormValue("os")
 	printer := r.FormValue("printer")
 
-	fmt.Fprintf(w, "Printing image %s %s times on printer %s...\n", imageName, copies, printer)
-
 	var cmd *exec.Cmd
 
-	fmt.Println("OS:", os)
-
 	if os == "linux" {
-		fmt.Println("Linux detected")
-		cmd = exec.Command("bash", "scripts/autoprinter.sh", imageName, copies, printer)
+		cmd = exec.Command("bash", "scripts/autoprinter.sh", imageName, "1", printer)
 	} else if os == "win" {
-		fmt.Println("Windows detected")
-		cmd = exec.Command("powershell", "-File", "scripts/autoprinter.ps1", imageName, copies, printer)
+		cmd = exec.Command("powershell", "-File", "scripts/autoprinter.ps1", imageName, "1", printer)
 	} else {
 		cmd = exec.Command("echo", "OS not detected")
-		fmt.Println("OS not detected")
 	}
 
 	output, err := cmd.CombinedOutput()
