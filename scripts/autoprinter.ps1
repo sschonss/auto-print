@@ -19,7 +19,7 @@ if (-not (Test-Path $image_file)) {
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Starting printing of $num_copies copies of file '$image_file' on printer '$printer_name'"
 
 for ($i = 0; $i -lt $num_copies; $i++) {
-    Start-Process -FilePath "C:\Windows\System32\mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printer_name`""
+    Start-Process -FilePath "mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printer_name`""
 }
 
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printer_name' completed"
