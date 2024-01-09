@@ -21,7 +21,8 @@ func enableCors(w *http.ResponseWriter) {
 func printImage(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
 
-	err := r.ParseMultipartForm(10 << 20) // Ajuste o tamanho máximo do arquivo conforme necessário
+	err := r.ParseMultipartForm(10 << 20)
+	fmt.Fprintf(w, "Request: %s\n", r)
 	if err != nil {
 		log.Println(err)
 		fmt.Fprintf(w, "Error parsing form: %s\n", err)
@@ -29,6 +30,7 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	file, handler, err := r.FormFile("image")
+	fmt.Fprintf(w, "File: %s\n", file)
 	if err != nil {
 		log.Println(err)
 		fmt.Fprintf(w, "Error retrieving the file: %s\n", err)
@@ -37,7 +39,9 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	defer file.Close()
 
 	imageName := handler.Filename
-	imagePath := "./files/" + imageName // Diretório onde as imagens serão salvas
+	fmt.Fprintf(w, "Image name: %s\n", imageName)
+	imagePath := "./files/" + imageName 
+	fmt.Fprintf(w, "Image path: %s\n", imagePath)
 	outputFile, err := os.Create(imagePath)
 	if err != nil {
 		log.Println(err)
