@@ -71,14 +71,14 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Printf("Error printing image: %s\n", err)
-		fmt.Fprintf(w, "Error printing image: %s\n", err)
-		fmt.Fprintf(w, "Output: %s\n", output)
+		log.Printf("Output: %s\n", output)
 		http.Error(w, "Failed to print the image", http.StatusInternalServerError)
 		return
 	}
 
 	fmt.Fprintf(w, "Print request processed successfully.\n%s\n", output)
 }
+
 
 
 func explainAPI(w http.ResponseWriter, r *http.Request) {
