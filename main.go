@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 func enableCors(w *http.ResponseWriter) {
@@ -80,6 +81,18 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "Print request processed successfully.\n%s\n", output)
+}
+
+func deleteImage(imageName string) {
+
+	err := os.Remove("./files/" + imageName)
+	if err != nil {
+		log.Printf("Error deleting image: %s\n", err)
+		time.Sleep(5 * time.Second)
+		deleteImage(imageName)
+	}else{
+		log.Printf("Image deleted successfully\n")
+	}
 }
 
 

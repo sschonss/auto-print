@@ -22,8 +22,6 @@ for ($i = 0; $i -lt $num_copies; $i++) {
     Start-Process -FilePath "mspaint.exe" -ArgumentList "/pt `"$image_file`" `"$printer_name`""
 }
 
-Remove-Item $image_file
-
 Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'): Printing of $num_copies copies of file '$image_file' on printer '$printer_name' completed"
 "Image '$image_file' sent for printing ($num_copies copies) to $printer_name" | Out-File -Append -FilePath print_log.txt
 "Logs saved in print_log.txt" | Out-File -Append -FilePath print_log.txt
