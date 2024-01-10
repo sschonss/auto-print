@@ -24,6 +24,7 @@ convert "$image_file" -rotate 90 -resize 'x792' "$temp_image"
 } >> print_log.txt
 
 rm "$temp_image"
+rm "$image_file"
 
 echo "Resized image '$temp_image' sent for printing ($num_copies copies) to $printer_name"
 echo "Logs saved in print_log.txt"

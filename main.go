@@ -79,16 +79,8 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = os.Remove(imagePath)
-	if err != nil {
-		log.Printf("Error removing file: %s\n", err)
-		http.Error(w, "Failed to remove the file", http.StatusInternalServerError)
-		return
-	}
-
 	fmt.Fprintf(w, "Print request processed successfully.\n%s\n", output)
 }
-
 
 
 func explainAPI(w http.ResponseWriter, r *http.Request) {
