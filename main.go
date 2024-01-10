@@ -81,6 +81,11 @@ func printImage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "Print request processed successfully.\n%s\n", output)
+
+	go func ()  {
+		time.Sleep(5 * time.Second)
+		deleteImage(imageName)
+	}()
 }
 
 func deleteImage(imageName string) {
